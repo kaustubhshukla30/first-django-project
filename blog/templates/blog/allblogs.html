@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-    <title>portfolio</title>
+    <title>blogs</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
@@ -27,7 +27,7 @@
        </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="{% url 'home'%}">home</a>
+       <a class="nav-item nav-link" href="{% url 'home'%}">home</a>
       <a class="nav-item nav-link" href="#">facebook</a>
       <a class="nav-item nav-link" href="{% url 'blogs'%}">blogs</a>
       
@@ -37,35 +37,21 @@
     </header>
 
     <main role="main">
+        <div class = "container">
 
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Hey! I'm Kaustubh</h1>
-          <p class="lead text-muted"> My first project on Django.</p>
-          <p>
-            <a href="https://mail.google.com/mail" class="btn btn-primary my-2">Email Me</a>
-            
-          </p>
+        <h1 class = "text-center pt-3"> Hello! welcome to my blogs</h1>
+        <br>
+        <h2> latest blogs</h2>
+        <hr>
+        {%for blog in blogs.all%}
+            <a href = "{% url 'detail' blog.id %}"> {{blog.title}}</a>
+            <br>
+            {{blog.pub_date}}
+            <br>
+            <img src="{{blog.image.url}}" height = 200,width = 200>
+            <p>{{blog.body}}</p>
+            {%endfor%}
         </div>
-      </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row">
-            
-                {%for job in jobs.all %}
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img class="card-img-top" src=" {{job.image.url}}">
-                        <div class="card-body">
-                            <p class="card-text">{{job.summary}}</p>
-                        </div> 
-                    </div>
-                </div>
-                {%endfor%}
-            </div>
-        </div>
-    </div>
 
     </main>
 
